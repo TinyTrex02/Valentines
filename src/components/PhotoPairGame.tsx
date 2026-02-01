@@ -4,26 +4,26 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-// 18 images
+// 18 images for the memory game
 const images = [
-  "/game-photos/1.avif",
-  "/game-photos/2.avif",
-  "/game-photos/3.avif",
-  "/game-photos/4.avif",
-  "/game-photos/5.avif",
-  "/game-photos/6.avif",
-  "/game-photos/7.avif",
-  "/game-photos/8.avif",
-  "/game-photos/9.avif",
-  "/game-photos/10.avif",
-  "/game-photos/11.avif",
-  "/game-photos/12.avif",
-  "/game-photos/13.avif",
-  "/game-photos/14.avif",
-  "/game-photos/15.avif",
-  "/game-photos/16.avif",
-  "/game-photos/17.avif",
-  "/game-photos/18.avif",
+  "/game-photos/1.jpg",
+  "/game-photos/2.jpg",
+  "/game-photos/3.jpg",
+  "/game-photos/4.jpg",
+  "/game-photos/5.jpg",
+  "/game-photos/6.jpg",
+  "/game-photos/7.jpg",
+  "/game-photos/8.jpg",
+  "/game-photos/9.jpg",
+  "/game-photos/10.jpg",
+  "/game-photos/11.jpg",
+  "/game-photos/12.jpg",
+  "/game-photos/13.jpg",
+  "/game-photos/14.jpg",
+  "/game-photos/15.jpg",
+  "/game-photos/16.jpg",
+  "/game-photos/17.jpg",
+  "/game-photos/18.jpg",
 ];
 
 // Create 18 pairs of images (36 images in total)
@@ -65,7 +65,8 @@ export default function PhotoPairGame({
   }, []);
 
   const handleClick = async (index: number) => {
-    if (selected.length === 2 || matched.includes(index)) return;
+    // Prevent clicking same card twice, already matched cards, or during selection
+    if (selected.length === 2 || matched.includes(index) || selected.includes(index)) return;
 
     setSelected((prev) => [...prev, index]);
 
@@ -91,7 +92,12 @@ export default function PhotoPairGame({
   }, [matched, handleShowProposal]);
 
   return (
-    <div className="grid grid-cols-9 gap-2">
+    <div className="flex flex-col items-center">
+      {/* Progress indicator */}
+      <div className="text-white mb-4 text-lg">
+        Pairs matched: {matched.length / 2} / {imagePairs.length / 2}
+      </div>
+      <div className="grid grid-cols-9 gap-2">
       {/* Image preload */}
       <div className="hidden">
         {images.map((image, i) => (
@@ -165,6 +171,7 @@ export default function PhotoPairGame({
           <div key={i} className="w-20 h-20"></div>
         )
       )}
+      </div>
     </div>
   );
 }

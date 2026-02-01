@@ -3,50 +3,51 @@ import { Playfair_Display } from "next/font/google";
 import { motion, AnimatePresence } from "framer-motion";
 import Fireworks from "@fireworks-js/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const playfairDisplay = Playfair_Display({
   display: "swap",
   subsets: ["latin"],
 });
 
-// 36 images
+// 36 images for background (reuses 18 images twice)
 const images = [
-  "/game-photos/1.avif",
-  "/game-photos/2.avif",
-  "/game-photos/3.avif",
-  "/game-photos/4.avif",
-  "/game-photos/5.avif",
-  "/game-photos/6.avif",
-  "/game-photos/7.avif",
-  "/game-photos/8.avif",
-  "/game-photos/9.avif",
-  "/game-photos/10.avif",
-  "/game-photos/11.avif",
-  "/game-photos/12.avif",
-  "/game-photos/13.avif",
-  "/game-photos/14.avif",
-  "/game-photos/15.avif",
-  "/game-photos/16.avif",
-  "/game-photos/17.avif",
-  "/game-photos/18.avif",
-  "/game-photos/19.avif",
-  "/game-photos/20.avif",
-  "/game-photos/21.avif",
-  "/game-photos/22.avif",
-  "/game-photos/23.avif",
-  "/game-photos/24.avif",
-  "/game-photos/25.avif",
-  "/game-photos/26.avif",
-  "/game-photos/27.avif",
-  "/game-photos/28.avif",
-  "/game-photos/29.avif",
-  "/game-photos/30.avif",
-  "/game-photos/31.avif",
-  "/game-photos/32.avif",
-  "/game-photos/33.avif",
-  "/game-photos/34.avif",
-  "/game-photos/35.avif",
-  "/game-photos/36.avif",
+  "/game-photos/1.jpg",
+  "/game-photos/2.jpg",
+  "/game-photos/3.jpg",
+  "/game-photos/4.jpg",
+  "/game-photos/5.jpg",
+  "/game-photos/6.jpg",
+  "/game-photos/7.jpg",
+  "/game-photos/8.jpg",
+  "/game-photos/9.jpg",
+  "/game-photos/10.jpg",
+  "/game-photos/11.jpg",
+  "/game-photos/12.jpg",
+  "/game-photos/13.jpg",
+  "/game-photos/14.jpg",
+  "/game-photos/15.jpg",
+  "/game-photos/16.jpg",
+  "/game-photos/17.jpg",
+  "/game-photos/18.jpg",
+  "/game-photos/1.jpg",
+  "/game-photos/2.jpg",
+  "/game-photos/3.jpg",
+  "/game-photos/4.jpg",
+  "/game-photos/5.jpg",
+  "/game-photos/6.jpg",
+  "/game-photos/7.jpg",
+  "/game-photos/8.jpg",
+  "/game-photos/9.jpg",
+  "/game-photos/10.jpg",
+  "/game-photos/11.jpg",
+  "/game-photos/12.jpg",
+  "/game-photos/13.jpg",
+  "/game-photos/14.jpg",
+  "/game-photos/15.jpg",
+  "/game-photos/16.jpg",
+  "/game-photos/17.jpg",
+  "/game-photos/18.jpg",
 ];
 
 export default function ValentinesProposal() {
@@ -58,10 +59,17 @@ export default function ValentinesProposal() {
   const [showFireworks, setShowFireworks] = useState(false);
 
   const getRandomPosition = () => {
-    const randomTop = Math.random() * 80;
-    const randomLeft = Math.random() * 80;
+    const randomTop = Math.random() * 70 + 10; // 10-80%
+    const randomLeft = Math.random() * 70 + 10; // 10-80%
     return { top: `${randomTop}%`, left: `${randomLeft}%` };
   };
+
+  // Start moving the No button immediately when step 2 is shown
+  useEffect(() => {
+    if (step === 2) {
+      setPosition(getRandomPosition());
+    }
+  }, [step]);
 
   useEffect(() => {
     if (step < 2) {
@@ -148,17 +156,16 @@ export default function ValentinesProposal() {
                 Yes, I will! 🥰
               </button>
               <button
-                className="px-6 py-2 text-lg font-semibold text-white bg-gradient-to-r from-gray-500 to-gray-600 rounded-xl hover:from-gray-600 hover:to-gray-700 transform hover:scale-95 transition-all duration-300 shadow-lg"
-                style={
-                  position
-                    ? {
-                        position: "absolute",
-                        top: position.top,
-                        left: position.left,
-                      }
-                    : {}
-                }
+                className="px-6 py-2 text-lg font-semibold text-white bg-gradient-to-r from-gray-500 to-gray-600 rounded-xl hover:from-gray-600 hover:to-gray-700 transform hover:scale-95 transition-all duration-200 shadow-lg z-50"
+                style={{
+                  position: "absolute",
+                  top: position?.top || "50%",
+                  left: position?.left || "60%",
+                  transition: "top 0.2s, left 0.2s",
+                }}
                 onMouseEnter={() => setPosition(getRandomPosition())}
+                onTouchStart={() => setPosition(getRandomPosition())}
+                onClick={() => setPosition(getRandomPosition())}
               >
                 No, I won&apos;t 😢
               </button>
@@ -174,8 +181,7 @@ export default function ValentinesProposal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            Thank you for accepting, I love you! 💕
-            <p className="text-sm mt-4">For more information, write me!!! 💌</p>
+            Yayyy, I love you bub! 💕
             <Image
               src="/hamster_jumping.gif"
               alt="Hamster Feliz"
@@ -203,6 +209,11 @@ export default function ValentinesProposal() {
           />
         </div>
       )}
+
+      {/* GitHub Link */}
+      <p className="absolute bottom-5 right-5 text-white text-sm opacity-15 hover:opacity-50">
+        <Link href="https://github.com/TinyTrex02">Made by TinyTrex02</Link>
+      </p>
     </div>
   );
 }

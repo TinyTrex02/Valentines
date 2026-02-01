@@ -23,10 +23,9 @@ export default function TextFooter() {
         to reveal <br /> <span className="text-gray-400">the surprise</span>
       </h1>
 
-      {/* Copyright */}
+      {/* GitHub */}
       <p className="absolute bottom-5 right-5 text-white text-sm opacity-15 hover:opacity-50">
-        © {new Date().getFullYear()}{" "}
-        <Link href="https://visibait.com">visibait.com</Link>
+        <Link href="https://github.com/TinyTrex02">Made by TinyTrex02</Link>
       </p>
     </>
   );
