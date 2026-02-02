@@ -4,7 +4,9 @@ A romantic memory card game in a heart shape. Match all pairs to reveal a specia
 
 ## Live Demo
 
-https://valentines-zeta-five.vercel.app
+https://valentines-zeta-five.vercel.app/
+
+Password ( top right ) - iloveyou
 
 ## Features
 
@@ -15,18 +17,8 @@ https://valentines-zeta-five.vercel.app
 - Fireworks animation on acceptance
 - Password skip for testing
 
-## Tech Stack
-
-- Next.js 16
-- React 19
-- Tailwind CSS
-- Framer Motion
-- Fireworks.js
-
 ## Author
 
 [TinyTrex02](https://github.com/TinyTrex02)
-
----
 
 Made with love
