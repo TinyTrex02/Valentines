@@ -12,9 +12,11 @@ Password ( top right ) - iloveyou
 
 ## How to Use
 
-1. Fork this repo
-2. Replace the images in `/public` with your own photos
-3. Deploy to Vercel (or any hosting) and share the link with your valentine!
+1. Click **Fork** (top right) to copy this repo to your account
+2. Replace images in `/public` with your own photos
+3. Go to [vercel.com](https://vercel.com) → Sign in with GitHub → **Add New Project**
+4. Select your forked repo → Click **Deploy**
+5. Share the generated link with your valentine!
 
 ## Features
 
