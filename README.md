@@ -6,7 +6,15 @@ A romantic memory card game in a heart shape. Match all pairs to reveal a specia
 
 https://valentines-zeta-five.vercel.app/
 
+
+
 Password ( top right ) - iloveyou
+
+## How to Use
+
+1. Fork this repo
+2. Replace the images in `/public` with your own photos
+3. Deploy to Vercel (or any hosting) and share the link with your valentine!
 
 ## Features
 
